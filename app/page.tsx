@@ -1,3 +1,5 @@
+import workStyles from './work-section.module.css';
+
 const capabilities = [
   ['Product systems', 'Turn ambiguous product ideas into reliable workflows, clear boundaries, and software teams can operate.'],
   ['SaaS platforms', 'Build the multi-tenant foundations, billing, permissions, dashboards, and integrations that survive real usage.'],
@@ -9,6 +11,13 @@ const systems = [
   ['01', 'Architecture', 'A system map that makes the hard parts visible before implementation starts.'],
   ['02', 'Execution', 'Focused product engineering across frontend, backend, data, integrations, and deployment.'],
   ['03', 'Ownership', 'Production-minded decisions, useful diagnostics, and a handoff your team can actually maintain.'],
+];
+
+const projects = [
+  ['Commerce operations platform', 'Enterprise workflows', 'Inventory, reservations, reporting, permissions, and payment-state flows brought into one dependable operational system.', 'React · Next.js · Laravel · Django · PostgreSQL'],
+  ['Huntera', 'Cyber resilience', 'A multi-tenant platform for isolated infrastructure validation, agent workflows, telemetry, and event-driven operational visibility.', 'React · Node.js · Docker · Events'],
+  ['AHOY partner portal', 'Partner operations', 'Structured onboarding, role-based access, knowledge resources, support workflows, and administration for distributed teams.', 'Next.js · RBAC · APIs · Admin systems'],
+  ['AI knowledge systems', 'Applied intelligence', 'Document intelligence and retrieval workflows that connect language models to useful, grounded business context.', 'Python · LangChain · Pinecone · RAG'],
 ];
 
 const stack = ['React', 'Next.js', 'TypeScript', 'Node.js', 'NestJS', 'Python', 'Django', 'Laravel', 'PHP', 'PostgreSQL', 'MongoDB', 'Redis', 'BullMQ', 'Docker', 'AWS', 'WebSockets', 'WebRTC', 'LangChain', 'Pinecone', 'OpenAI', 'YOLO', 'FFmpeg'];
@@ -42,6 +51,8 @@ export default function Home() {
         <div className="section-intro"><p className="eyebrow">WHAT I WORK ON</p><h2>Complex software,<br /><i>made legible.</i></h2></div>
         <div className="capability-grid">{capabilities.map(([title, body]) => <article className="capability" key={title}><span className="line-mark" /><h3>{title}</h3><p>{body}</p><span className="arrow">↗</span></article>)}</div>
       </section>
+
+      <section className={`${workStyles.workSection} shell`}><div className="section-intro"><div><p className="eyebrow">SELECTED ENGINEERING WORK</p><h2>The work is<br /><i>the proof.</i></h2></div><p className={workStyles.workIntro}>A confidentiality-safe view of the problems, systems, and product surfaces I have worked across. Names are generalized where the work is private.</p></div><div className={workStyles.projectGrid}>{projects.map(([name, type, body, tech], index) => <article className={workStyles.projectCard} key={name}><div className={workStyles.projectTop}><span>0{index + 1}</span><span>{type}</span></div><h3>{name}</h3><p>{body}</p><small>{tech}</small><span className={workStyles.projectArrow}>↗</span></article>)}</div></section>
 
       <section className="proof-section"><div className="shell proof-grid"><div><p className="eyebrow">WHAT THAT MEANS IN PRACTICE</p><h2>Not another<br /><i>feature factory.</i></h2></div><div className="proof-copy"><p>I have worked across the whole path: shaping product decisions, designing architecture, building interfaces, writing APIs, connecting third-party systems, debugging production failures, and deploying the result.</p><p>The differentiator is not a longer list of tools. It is being able to see how a decision in one layer changes the behavior of the whole system.</p><div className="proof-metrics"><div><strong>01</strong><span>Product thinking<br />inside engineering</span></div><div><strong>02</strong><span>Full-stack depth<br />without silos</span></div><div><strong>03</strong><span>Production ownership<br />after launch</span></div></div></div></div></section>
 
