@@ -1,0 +1,32 @@
+# Sheraz Zafar
+
+> Sheraz Zafar is a senior product and systems engineer based in Pakistan, available for selected remote engagements worldwide.
+
+## Professional focus
+
+Product and SaaS engineering, AI integration and retrieval systems, production reliability, real-time workflows, backend APIs, and end-to-end product delivery.
+
+## Experience
+
+Five years of software product engineering across SaaS, AI-enabled workflows, integrations, realtime features, and production systems. Technologies used across projects include React, Next.js, TypeScript, Node.js, NestJS, Laravel/PHP, Python/Django, PostgreSQL, MongoDB, Redis, Docker, and cloud platforms.
+
+## Services
+
+- [Product engineering for SaaS teams](https://sherazdevsolutions.com/services/product-engineering/): Own a defined product area from technical discovery through implementation and handover.
+- [AI integration and retrieval systems](https://sherazdevsolutions.com/services/ai-integration/): Add document intelligence, retrieval, extraction, and model-assisted workflows to product applications.
+- [Production reliability and systems engineering](https://sherazdevsolutions.com/services/production-reliability/): Investigate production behavior across APIs, data, queues, realtime features, integrations, and deployment.
+
+## Contact
+
+- [Portfolio and contact form](https://sherazdevsolutions.com/)
+- Email: sherazzafar148@gmail.com
+- [LinkedIn](https://www.linkedin.com/in/sheraz-zafar/)
+- [GitHub](https://github.com/sheraz-zafar)
+
+## Confidentiality
+
+Project names and descriptions are generalized where client work is confidential. This site does not claim unverified outcomes, client endorsements, or project status.
+
+## Illustrative engineering analysis
+
+- [Payment and inventory consistency](https://sherazdevsolutions.com/case-studies/order-inventory-consistency/): A generalized, illustrative analysis of order state, payment outcomes, inventory reservations, failure modes, and trade-offs. It is not a client project report, shipped implementation, or production architecture.
