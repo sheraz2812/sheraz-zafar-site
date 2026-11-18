@@ -1,0 +1,6 @@
+.form { position: relative; }
+.form button:disabled { opacity: .65; cursor: wait; }
+.honeypot { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.status { margin: 0; padding: 13px 15px; border: 1px solid rgba(255,255,255,.28); font: 12px/1.6 var(--sans); }
+.success { background: rgba(206, 225, 204, .12); color: #eff9ea; }
+.error { background: rgba(222, 99, 77, .14); color: #ffe1d8; }

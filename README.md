@@ -1,6 +1,6 @@
 # Sheraz Zafar — Engineering Portfolio
 
-A statically exported Next.js portfolio for Sheraz Zafar, senior software and systems engineer.
+A Next.js portfolio for Sheraz Zafar, senior software and systems engineer. The site uses a server-side route for contact form email delivery and is deployed on Vercel.
 
 ## Local development
 
@@ -15,7 +15,17 @@ npm run dev
 npm run build
 ```
 
-The production build is exported to `out/`. The project uses Next.js static export and can be deployed on Vercel or another static hosting provider. The canonical domain and sitemap are configured for `https://sherazdevsolutions.com`.
+The project runs on Vercel with the Next.js server runtime. The contact form uses Resend to send a branded inquiry notification to Sheraz and a separate receipt to the person who submitted it.
+
+## Contact email configuration
+
+Set these environment variables in Vercel (Production and Preview):
+
+- `RESEND_API_KEY` — Resend secret API key; never commit it.
+- `CONTACT_FROM_EMAIL` — verified Resend sender, for example `Sheraz Dev Solutions <website@mail.sherazdevsolutions.com>`.
+- `CONTACT_TO_EMAIL` — inquiry destination; defaults to `sherazzafar148@gmail.com`.
+
+The sender domain must be verified in Resend and its displayed DNS records added at the domain's DNS provider before live delivery will work. The form sends two transactional emails and does not store submissions in this website.
 
 ## Public content
 
