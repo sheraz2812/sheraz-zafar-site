@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next';
+import { siteUrl } from '../lib/site';
 
 export const dynamic = 'force-static';
 
@@ -14,6 +15,6 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: 'GPTBot', disallow: '/' },
       { userAgent: 'ClaudeBot', disallow: '/' },
     ],
-    sitemap: 'https://sherazdevsolutions.com/sitemap.xml',
+    sitemap: `${siteUrl}/sitemap.xml`,
   };
 }

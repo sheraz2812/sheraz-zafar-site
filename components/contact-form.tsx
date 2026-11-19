@@ -2,6 +2,7 @@
 
 import { useRef, useState, type FormEvent } from 'react';
 import { Mail } from 'lucide-react';
+import { sendContactRequest } from '../lib/contact-request.mjs';
 import styles from './contact-form.module.css';
 
 type SubmissionState = { kind: 'success' | 'error'; message: string } | null;
@@ -21,28 +22,17 @@ export function ContactForm() {
 
     setSending(true);
     setStatus(null);
-
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Idempotency-Key': idempotencyKey.current,
-        },
-        body: JSON.stringify({
-          name: data.get('name'),
-          email: data.get('email'),
-          company: data.get('company'),
-          project: data.get('project'),
-          problem: data.get('problem'),
-          budget: data.get('budget'),
-          timeline: data.get('timeline'),
-          company_website: data.get('company_website'),
-        }),
-      });
-
-      const result = await response.json();
-      if (!response.ok) throw new Error(result.error || 'Your message could not be sent. Please try again.');
+      await sendContactRequest({
+        name: data.get('name'),
+        email: data.get('email'),
+        company: data.get('company'),
+        project: data.get('project'),
+        problem: data.get('problem'),
+        budget: data.get('budget'),
+        timeline: data.get('timeline'),
+        company_website: data.get('company_website'),
+      }, idempotencyKey.current);
 
       form.reset();
       idempotencyKey.current = null;

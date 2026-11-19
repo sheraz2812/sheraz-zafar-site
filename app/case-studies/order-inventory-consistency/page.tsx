@@ -2,8 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import ArchitectureExplorer from '../../../components/architecture/architecture-explorer';
 import { orderInventoryAnalysis } from '../../../lib/case-studies';
-
-const siteUrl = 'https://sherazdevsolutions.com';
+import { siteUrl } from '../../../lib/site';
 
 export const metadata: Metadata = {
   title: 'Payment & Inventory Consistency | Illustrative Engineering Analysis | Sheraz Zafar',

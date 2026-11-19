@@ -12,13 +12,13 @@ Five years of software product engineering across SaaS, AI-enabled workflows, in
 
 ## Services
 
-- [Product engineering for SaaS teams](https://sherazdevsolutions.com/services/product-engineering/): Own a defined product area from technical discovery through implementation and handover.
-- [AI integration and retrieval systems](https://sherazdevsolutions.com/services/ai-integration/): Add document intelligence, retrieval, extraction, and model-assisted workflows to product applications.
-- [Production reliability and systems engineering](https://sherazdevsolutions.com/services/production-reliability/): Investigate production behavior across APIs, data, queues, realtime features, integrations, and deployment.
+- [Product engineering for SaaS teams](https://www.sherazdevsolutions.com/services/product-engineering/): Own a defined product area from technical discovery through implementation and handover.
+- [AI integration and retrieval systems](https://www.sherazdevsolutions.com/services/ai-integration/): Add document intelligence, retrieval, extraction, and model-assisted workflows to product applications.
+- [Production reliability and systems engineering](https://www.sherazdevsolutions.com/services/production-reliability/): Investigate production behavior across APIs, data, queues, realtime features, integrations, and deployment.
 
 ## Contact
 
-- [Portfolio and contact form](https://sherazdevsolutions.com/)
+- [Portfolio and contact form](https://www.sherazdevsolutions.com/)
 - Email: sherazzafar148@gmail.com
 - [LinkedIn](https://www.linkedin.com/in/sheraz-zafar/)
 - [GitHub](https://github.com/sheraz-zafar)
@@ -29,4 +29,4 @@ Project names and descriptions are generalized where client work is confidential
 
 ## Illustrative engineering analysis
 
-- [Payment and inventory consistency](https://sherazdevsolutions.com/case-studies/order-inventory-consistency/): A generalized, illustrative analysis of order state, payment outcomes, inventory reservations, failure modes, and trade-offs. It is not a client project report, shipped implementation, or production architecture.
+- [Payment and inventory consistency](https://www.sherazdevsolutions.com/case-studies/order-inventory-consistency/): A generalized, illustrative analysis of order state, payment outcomes, inventory reservations, failure modes, and trade-offs. It is not a client project report, shipped implementation, or production architecture.
