@@ -39,5 +39,10 @@
 .validation-grid h3{font:600 19px var(--serif);margin:14px 0 8px}
 .validation-grid p{font-size:12px;line-height:1.75;color:#53616a;margin:0;max-width:520px}
 .validation-boundary{margin:25px 0 0;color:#53616a}
+.source-proof{display:flex;align-items:center;gap:22px;flex-wrap:wrap;padding-top:22px;margin-top:22px;border-top:1px solid #b6bfbd;font-size:12px}
+.source-proof p{flex:1 1 280px;margin:0;color:#53616a;line-height:1.7}
+.source-proof p b{display:block;color:#111820;font:10px var(--mono);letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px}
+.source-proof a{color:#111820;text-decoration:none;border-bottom:1px solid #b6bfbd;padding:8px 0}
+.source-proof a:hover,.source-proof a:focus-visible{color:var(--case-coral);border-color:currentColor}
 @media(max-width:900px){.validation-section{padding-left:6vw;padding-right:6vw}}
-@media(max-width:680px){.validation-section{padding-top:70px;padding-bottom:70px}.validation-grid{grid-template-columns:1fr}.validation-section>h2{font-size:43px}}
+@media(max-width:680px){.validation-section{padding-top:70px;padding-bottom:70px}.validation-grid{grid-template-columns:1fr}.validation-section>h2{font-size:43px}.source-proof{align-items:flex-start;flex-direction:column;gap:8px}.source-proof p{flex-basis:auto}}

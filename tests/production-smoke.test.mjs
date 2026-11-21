@@ -134,6 +134,9 @@ test('interactive case study renders with its canonical and controls', async () 
   assert.match(html, /Provider timeout|provider timeout/i);
   assert.match(html, /id="validation"/);
   assert.match(html, /automated checks cover the model/);
+  assert.match(html, /github\.com\/sheraz2812\/sheraz-zafar-site\/blob\/main\/lib\/order-inventory-model\.mjs/);
+  assert.match(html, /github\.com\/sheraz2812\/sheraz-zafar-site\/blob\/main\/tests\/order-inventory-model\.test\.mjs/);
+  assert.match(html, /not test a payment provider, database durability, production concurrency, or any client deployment/i);
 });
 
 test('legacy resume path uses temporary redirect and reaches the fragment destination', async () => {
