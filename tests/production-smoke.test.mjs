@@ -58,6 +58,10 @@ test('homepage renders the current experience wording and www canonical', async 
   assert.doesNotMatch(html, /52\+ COMPLETED CLIENT ENGAGEMENTS/);
   assert.match(html, /<input[^>]*type="email"[^>]*required|<input[^>]*required[^>]*type="email"/);
   assert.match(html, /<textarea[^>]*required/);
+  assert.match(html, /id="services"/);
+  assert.match(html, /Engagements start with a defined problem/);
+  assert.match(html, /Start with a paid technical discovery/);
+  assert.match(html, /href="\/services\/product-engineering\/"/);
 });
 
 test('all service routes render with www canonicals', async () => {
@@ -128,6 +132,8 @@ test('interactive case study renders with its canonical and controls', async () 
   assert.ok(html.includes(`href="https://www.sherazdevsolutions.com${route}"`));
   assert.match(html, /ILLUSTRATIVE/);
   assert.match(html, /Provider timeout|provider timeout/i);
+  assert.match(html, /id="validation"/);
+  assert.match(html, /automated checks cover the model/);
 });
 
 test('legacy resume path uses temporary redirect and reaches the fragment destination', async () => {
