@@ -71,6 +71,57 @@ test('all service routes render with www canonicals', async () => {
   }
 });
 
+test('all indexable pages have unique titles, self canonicals, index directives, and valid structured data', async () => {
+  const routes = [
+    '/',
+    '/services/product-engineering/',
+    '/services/ai-integration/',
+    '/services/production-reliability/',
+    '/case-studies/order-inventory-consistency/',
+  ];
+  const titles = new Set();
+
+  for (const route of routes) {
+    const html = await page(route);
+    const title = html.match(/<title>(.*?)<\/title>/)?.[1];
+    assert.ok(title, `${route} title exists`);
+    assert.equal(titles.has(title), false, `${route} has unique title`);
+    titles.add(title);
+    const canonical = `https://www.sherazdevsolutions.com${route}`;
+    assert.ok(html.includes(`href="${canonical}"`), `${route} self canonical`);
+    assert.ok(html.includes(`<meta property="og:url" content="${canonical}"`), `${route} Open Graph URL matches canonical`);
+    assert.doesNotMatch(html, /name="robots" content="[^"]*noindex/i, `${route} is indexable`);
+
+    const schemas = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)]
+      .map(([, json]) => JSON.parse(json));
+    assert.ok(schemas.length > 0, `${route} structured data exists`);
+    assert.ok(schemas.every(schema => schema['@context'] === 'https://schema.org'), `${route} JSON-LD parses`);
+
+    if (route.startsWith('/services/')) {
+      const service = schemas.find(schema => schema['@type'] === 'Service');
+      assert.ok(service, `${route} Service entity exists`);
+      assert.equal(service.provider['@id'], 'https://www.sherazdevsolutions.com/#person');
+      assert.ok(html.includes('Related engineering reference'));
+    }
+    if (route.startsWith('/case-studies/')) {
+      const article = schemas.find(schema => schema['@type'] === 'Article');
+      assert.ok(article, 'case study Article entity exists');
+      assert.equal(article.author['@id'], 'https://www.sherazdevsolutions.com/#person');
+      assert.equal('isBasedOn' in article, false, 'does not use an invalid text-valued isBasedOn property');
+      assert.match(html, /not a client project report/i);
+    }
+    if (route === '/') {
+      const graph = schemas.find(schema => Array.isArray(schema['@graph']))['@graph'];
+      assert.ok(graph.some(entity => entity['@type'] === 'Person' && entity.name === 'Sheraz Zafar'));
+      assert.ok(graph.some(entity => entity['@type'] === 'WebSite'));
+      assert.ok(graph.some(entity => entity['@type'] === 'ProfilePage'));
+      if (!process.env.NEXT_PUBLIC_ANALYTICS_PROVIDER || !process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID) {
+        assert.doesNotMatch(html, /googletagmanager\.com\/gtag|gtag\('config'/i, 'analytics is not emitted without provider configuration');
+      }
+    }
+  }
+});
+
 test('interactive case study renders with its canonical and controls', async () => {
   const route = '/case-studies/order-inventory-consistency/';
   const html = await page(route);
@@ -105,6 +156,10 @@ test('robots and sitemap point crawlers to the canonical host', async () => {
   const sitemap = await (await fetch(new URL('/sitemap.xml', baseUrl))).text();
   assert.match(sitemap, /https:\/\/www\.sherazdevsolutions\.com\/services\/product-engineering\//);
   assert.match(sitemap, /https:\/\/www\.sherazdevsolutions\.com\/case-studies\/order-inventory-consistency\//);
+  const urls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(([, url]) => url);
+  assert.equal(urls.length, 5);
+  assert.equal(new Set(urls).size, urls.length);
+  assert.ok(urls.every(url => url.startsWith('https://www.sherazdevsolutions.com/')));
 });
 
 test('favicon, profile derivatives, and original image are served with expected types', async () => {

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { siteUrl } from '../lib/site';
+import { Analytics } from '../components/analytics';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -23,5 +24,5 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     { '@type': 'WebSite', '@id': `${siteUrl}/#website`, url: `${siteUrl}/`, name: 'Sheraz Zafar — Product & Systems Engineering', inLanguage: 'en', publisher: { '@id': `${siteUrl}/#person` } },
     { '@type': 'ProfilePage', '@id': `${siteUrl}/#profile`, url: `${siteUrl}/`, name: 'Sheraz Zafar — Senior Software & Systems Engineer', mainEntity: { '@id': `${siteUrl}/#person` }, isPartOf: { '@id': `${siteUrl}/#website` } },
   ] };
-  return <html lang="en"><body>{children}<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} /></body></html>;
+  return <html lang="en"><body>{children}<Analytics/><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} /></body></html>;
 }

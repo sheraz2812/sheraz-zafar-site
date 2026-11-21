@@ -3,6 +3,7 @@
 import { useRef, useState, type FormEvent } from 'react';
 import { Mail } from 'lucide-react';
 import { sendContactRequest } from '../lib/contact-request.mjs';
+import { trackSuccessfulLead } from './analytics';
 import styles from './contact-form.module.css';
 
 type SubmissionState = { kind: 'success' | 'error'; message: string } | null;
@@ -33,6 +34,8 @@ export function ContactForm() {
         timeline: data.get('timeline'),
         company_website: data.get('company_website'),
       }, idempotencyKey.current);
+
+      if (!data.get('company_website')) trackSuccessfulLead(idempotencyKey.current);
 
       form.reset();
       idempotencyKey.current = null;

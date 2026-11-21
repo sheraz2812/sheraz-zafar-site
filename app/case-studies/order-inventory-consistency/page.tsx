@@ -22,16 +22,17 @@ export default function CaseStudyPage() {
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'Article',
+    '@id': `${pageUrl}#article`,
     headline: item.title,
     description: item.summary,
-    author: { '@type': 'Person', name: 'Sheraz Zafar', url: `${siteUrl}/` },
-    mainEntityOfPage: pageUrl,
+    author: { '@id': `${siteUrl}/#person` },
+    mainEntityOfPage: { '@id': pageUrl },
     about: ['Order management', 'Payment processing', 'Inventory consistency', 'Reliability engineering'],
-    isBasedOn: 'Illustrative engineering analysis; not a client deployment or historical implementation record.',
+    genre: 'Illustrative engineering analysis',
   };
 
   return <main className="case-page">
-    <header className="case-masthead"><Link className="case-brand" href="/">/ SHERAZ ZAFAR</Link><nav aria-label="Case study navigation"><Link href="/#work">Work</Link><Link href="/#services">Services</Link><Link className="case-nav-cta" href="/#contact">Discuss a project ↗</Link></nav></header>
+    <header className="case-masthead"><Link className="case-brand" href="/">/ SHERAZ ZAFAR</Link><nav aria-label="Case study navigation"><Link href="/#work">Work</Link><Link href="/#services">Services</Link><Link className="case-nav-cta" href="/#contact" data-analytics-contact="form">Discuss a project ↗</Link></nav></header>
 
     <section className="case-hero">
       <div className="case-hero-copy"><Link className="case-back" href="/#investigations">← Back to engineering work</Link><p className="case-eyebrow">{item.eyebrow}</p><h1>{item.title}</h1><p className="case-lead">{item.summary}</p><div className="case-tags"><span>Payment consistency</span><span>Inventory lifecycle</span><span>Failure recovery</span></div></div>
@@ -48,7 +49,7 @@ export default function CaseStudyPage() {
 
     <section className="reflection-section"><div className="case-section-kicker">05 / LIMITATIONS &amp; REFLECTION</div><div className="reflection-grid"><div><h2>Useful models<br/><em>show their limits.</em></h2><p>A sequence can make responsibilities legible, but cannot prove atomicity between separate systems. A real design still needs provider semantics, domain rules, concurrency guarantees, operational ownership, and evidence from implementation.</p></div><div><h3>What this analysis makes visible</h3><ul>{item.outcomes.map((outcome) => <li key={outcome}>{outcome}</li>)}</ul><h3>What it cannot establish</h3><ul>{item.limitations.map((limitation) => <li key={limitation}>{limitation}</li>)}</ul></div></div></section>
 
-    <section className="case-contact"><div><span className="case-section-kicker">ENGINEERING WORK / SHERAZ ZAFAR</span><h2>Working through a<br/><em>similar system problem?</em></h2><p>Share the workflow, the failure mode, and what is still uncertain. We can scope the right engineering investigation together.</p></div><Link href="/#contact" className="cta-primary">Discuss a project ↗</Link></section>
+    <section className="case-contact"><div><span className="case-section-kicker">ENGINEERING WORK / SHERAZ ZAFAR</span><h2>Working through a<br/><em>similar system problem?</em></h2><p>Share the workflow, the failure mode, and what is still uncertain. We can scope the right engineering investigation together.</p></div><Link href="/#contact" className="cta-primary" data-analytics-contact="form">Discuss a project ↗</Link></section>
 
     <footer className="case-footer"><Link href="/">Sheraz Zafar</Link><span>ILLUSTRATIVE SYSTEM ANALYSIS · NO CLIENT ARCHITECTURE REPRODUCED</span><Link href="/#top">Back to portfolio ↑</Link></footer>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
