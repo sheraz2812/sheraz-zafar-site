@@ -1,7 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { initializeAnalytics, isAnalyticsConfigured, trackAnalyticsEvent, trackContactClickFromTarget, updateAnalyticsConsent } from '../lib/analytics.mjs';
 import type { AnalyticsEvent } from '../lib/analytics.mjs';
 import styles from './analytics.module.css';
@@ -21,10 +20,8 @@ declare global {
 }
 
 export function Analytics() {
-  const pathname = usePathname();
   const [consent, setConsent] = useState<'accepted' | 'rejected' | null>(null);
   const [showPreferences, setShowPreferences] = useState(true);
-  const lastPageView = useRef<string | null>(null);
 
   useEffect(() => {
     if (!configured) return;
@@ -42,12 +39,6 @@ export function Analytics() {
 
   useEffect(() => {
     if (consent !== 'accepted' || !configured) return;
-    const pagePath = pathname || '/';
-    if (lastPageView.current !== pagePath) {
-      trackAnalyticsEvent({ name: 'page_view', pagePath }, window);
-      lastPageView.current = pagePath;
-    }
-
     const onClick = (event: MouseEvent) => {
       const target = event.target;
       if (!(target instanceof Element)) return;
@@ -56,7 +47,7 @@ export function Analytics() {
 
     document.addEventListener('click', onClick, true);
     return () => document.removeEventListener('click', onClick, true);
-  }, [consent, pathname]);
+  }, [consent]);
 
   if (!configured) return null;
 
