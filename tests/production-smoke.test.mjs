@@ -139,8 +139,8 @@ test('interactive case study renders with its canonical and controls', async () 
   assert.match(html, /not test a payment provider, database durability, production concurrency, or any client deployment/i);
 });
 
-test('legacy resume path uses temporary redirect and reaches the fragment destination', async () => {
-  for (const [route, expectedStatuses] of [['/resume', [308, 307]], ['/resume/', [307]]]) {
+test('legacy resume path permanently redirects and reaches the fragment destination', async () => {
+  for (const [route, expectedStatuses] of [['/resume', [308, 308]], ['/resume/', [308]]]) {
     let current = new URL(route, baseUrl);
     let response;
     const statuses = [];

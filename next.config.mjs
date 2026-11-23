@@ -3,7 +3,7 @@ const nextConfig = {
   trailingSlash: true,
   images: { unoptimized: true },
   async redirects() {
-    return [{ source: '/resume/', destination: '/#journey', permanent: false }];
+    return [{ source: '/resume/:path*', destination: '/#journey', permanent: true }];
   },
   async headers() {
     return [{
