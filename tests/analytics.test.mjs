@@ -49,9 +49,10 @@ test('granting consent before initialization configures first, then injects exac
   assert.equal(initializeAnalytics('G-ABC123', target), true);
   assert.equal(scripts.length, 1);
   assert.deepEqual(target.dataLayer.slice(0, 3).map((entry) => entry[0]), ['consent', 'js', 'config']);
-  assert.deepEqual(target.dataLayer[0], ['consent', 'update', { analytics_storage: 'granted' }]);
+  assert.deepEqual(Array.from(target.dataLayer[0]), ['consent', 'update', { analytics_storage: 'granted' }]);
   assert.equal(target.dataLayer[2][1], 'G-ABC123');
   assert.equal(target.dataLayer[2][2].send_page_view, false);
+  assert.equal(Object.prototype.toString.call(target.dataLayer[0]), '[object Arguments]');
 });
 
 test('granting consent after page load enables a page view and CTA event', () => {
@@ -93,7 +94,9 @@ test('revocation removes queued app events and later consent can be granted agai
   trackAnalyticsEvent({ name: 'page_view', pagePath: '/' }, target);
   assert.equal(target.dataLayer.some((entry) => entry[0] === 'event'), true);
 
+  const originalQueue = target.dataLayer;
   updateAnalyticsConsent('rejected', target);
+  assert.equal(target.dataLayer, originalQueue, 'loaded tag keeps the same queue reference');
   assert.equal(target.dataLayer.some((entry) => entry[0] === 'event'), false);
   assert.equal(trackAnalyticsEvent({ name: 'contact_click', method: 'form' }, target), false);
   updateAnalyticsConsent('accepted', target);
