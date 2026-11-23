@@ -7,3 +7,4 @@ export function isAnalyticsConfigured(provider: string | undefined, measurementI
 export function initializeAnalytics(measurementId: string, target?: Window & typeof globalThis): boolean;
 export function updateAnalyticsConsent(choice: 'accepted' | 'rejected', target?: Window & typeof globalThis): boolean;
 export function trackAnalyticsEvent(event: AnalyticsEvent, target?: Window & typeof globalThis): boolean;
+export function trackContactClickFromTarget(clickedElement: Element, target?: Window & typeof globalThis): boolean;

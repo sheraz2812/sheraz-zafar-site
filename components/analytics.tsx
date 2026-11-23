@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { initializeAnalytics, isAnalyticsConfigured, trackAnalyticsEvent, updateAnalyticsConsent } from '../lib/analytics.mjs';
+import { initializeAnalytics, isAnalyticsConfigured, trackAnalyticsEvent, trackContactClickFromTarget, updateAnalyticsConsent } from '../lib/analytics.mjs';
 import type { AnalyticsEvent } from '../lib/analytics.mjs';
 import styles from './analytics.module.css';
 
@@ -51,16 +51,11 @@ export function Analytics() {
     const onClick = (event: MouseEvent) => {
       const target = event.target;
       if (!(target instanceof Element)) return;
-      const trackedLink = target.closest<HTMLAnchorElement>('[data-analytics-contact]');
-      if (!trackedLink) return;
-      const method = trackedLink.dataset.analyticsContact;
-      if (method === 'form' || method === 'email' || method === 'phone') {
-        trackAnalyticsEvent({ name: 'contact_click', method }, window);
-      }
+      trackContactClickFromTarget(target, window);
     };
 
-    document.addEventListener('click', onClick);
-    return () => document.removeEventListener('click', onClick);
+    document.addEventListener('click', onClick, true);
+    return () => document.removeEventListener('click', onClick, true);
   }, [consent, pathname]);
 
   if (!configured) return null;

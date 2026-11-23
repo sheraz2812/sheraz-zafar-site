@@ -4,6 +4,7 @@ import {
   initializeAnalytics,
   isAnalyticsConfigured,
   trackAnalyticsEvent,
+  trackContactClickFromTarget,
   updateAnalyticsConsent,
 } from '../lib/analytics.mjs';
 
@@ -68,6 +69,18 @@ test('granting consent after page load enables a page view and CTA event', () =>
     ['event', 'page_view', { page_path: '/' }],
     ['event', 'contact_click', { contact_method: 'form' }],
   ]);
+});
+
+test('contact CTA targets resolve through nested click targets and dispatch only allowed methods', () => {
+  const { target, calls } = makeWindow('accepted');
+  target.gtag = (...args) => calls.push(args);
+  const nestedIcon = { closest: () => ({ dataset: { analyticsContact: 'form' } }) };
+  const unrelatedTarget = { closest: () => null };
+  assert.equal(trackContactClickFromTarget(nestedIcon, target), true);
+  assert.equal(trackContactClickFromTarget(unrelatedTarget, target), false);
+  assert.deepEqual(calls, [['event', 'contact_click', { contact_method: 'form' }]]);
+  updateAnalyticsConsent('rejected', target);
+  assert.equal(trackContactClickFromTarget(nestedIcon, target), false);
 });
 
 test('page view accepts only clean pathname and a navigation is represented once by caller', () => {
