@@ -1,9 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import Script from 'next/script';
-import { isAnalyticsConfigured, trackAnalyticsEvent } from '../lib/analytics.mjs';
+import { initializeAnalytics, isAnalyticsConfigured, trackAnalyticsEvent, updateAnalyticsConsent } from '../lib/analytics.mjs';
 import type { AnalyticsEvent } from '../lib/analytics.mjs';
 import styles from './analytics.module.css';
 
@@ -16,17 +15,16 @@ declare global {
   interface Window {
     dataLayer?: unknown[];
     gtag?: (...args: unknown[]) => void;
+    __sherazGa4Configured?: string;
+    __sherazGa4ScriptRequested?: boolean;
   }
-}
-
-function AnalyticsTags({ id }: { id: string }) {
-  return <Script src={`https://www.googletagmanager.com/gtag/js?id=${id}`} strategy="afterInteractive" />;
 }
 
 export function Analytics() {
   const pathname = usePathname();
   const [consent, setConsent] = useState<'accepted' | 'rejected' | null>(null);
   const [showPreferences, setShowPreferences] = useState(true);
+  const lastPageView = useRef<string | null>(null);
 
   useEffect(() => {
     if (!configured) return;
@@ -39,20 +37,16 @@ export function Analytics() {
 
   useEffect(() => {
     if (consent !== 'accepted' || !configured || !measurementId) return;
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = window.gtag || ((...args: unknown[]) => window.dataLayer!.push(args));
-    window.gtag('js', new Date());
-    window.gtag('config', measurementId, {
-      send_page_view: false,
-      allow_google_signals: false,
-      allow_ad_personalization_signals: false,
-      anonymize_ip: true,
-    });
+    initializeAnalytics(measurementId, window);
   }, [consent]);
 
   useEffect(() => {
     if (consent !== 'accepted' || !configured) return;
-    trackAnalyticsEvent({ name: 'page_view', pagePath: pathname || '/' });
+    const pagePath = pathname || '/';
+    if (lastPageView.current !== pagePath) {
+      trackAnalyticsEvent({ name: 'page_view', pagePath }, window);
+      lastPageView.current = pagePath;
+    }
 
     const onClick = (event: MouseEvent) => {
       const target = event.target;
@@ -61,7 +55,7 @@ export function Analytics() {
       if (!trackedLink) return;
       const method = trackedLink.dataset.analyticsContact;
       if (method === 'form' || method === 'email' || method === 'phone') {
-        trackAnalyticsEvent({ name: 'contact_click', method });
+        trackAnalyticsEvent({ name: 'contact_click', method }, window);
       }
     };
 
@@ -72,13 +66,12 @@ export function Analytics() {
   if (!configured) return null;
 
   function chooseConsent(choice: 'accepted' | 'rejected') {
-    window.localStorage.setItem(consentKey, choice);
+    updateAnalyticsConsent(choice, window);
     setConsent(choice);
     setShowPreferences(false);
   }
 
   return <>
-    {consent === 'accepted' && measurementId && <AnalyticsTags id={measurementId} />}
     {consent !== null && !showPreferences && <button className={styles.preferences} type="button" onClick={() => setShowPreferences(true)}>Analytics preferences</button>}
     {(consent === null || showPreferences) && <aside className={styles.notice} aria-label="Analytics preferences">
       <p>Optional site analytics help measure visits and successful inquiries. Form details are never sent to analytics.</p>
@@ -89,5 +82,5 @@ export function Analytics() {
 
 export function trackSuccessfulLead(submissionId: string) {
   const event: AnalyticsEvent = { name: 'lead_submission_success', method: 'contact_form', submissionId };
-  trackAnalyticsEvent(event);
+  trackAnalyticsEvent(event, window);
 }

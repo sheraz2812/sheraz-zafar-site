@@ -4,4 +4,6 @@ export type AnalyticsEvent =
   | { name: 'lead_submission_success'; method: 'contact_form'; submissionId: string };
 
 export function isAnalyticsConfigured(provider: string | undefined, measurementId: string | undefined): boolean;
-export function trackAnalyticsEvent(event: AnalyticsEvent, target?: { gtag?: (...args: unknown[]) => void }): boolean;
+export function initializeAnalytics(measurementId: string, target?: Window & typeof globalThis): boolean;
+export function updateAnalyticsConsent(choice: 'accepted' | 'rejected', target?: Window & typeof globalThis): boolean;
+export function trackAnalyticsEvent(event: AnalyticsEvent, target?: Window & typeof globalThis): boolean;
