@@ -92,3 +92,15 @@ No provider benchmark run was performed for this repository change. The table is
 ## Limits
 
 The benchmark evaluates observable recommendation/citation outcomes, not model training state. Google Search Console shows Google Web/Image performance, not a complete AI answer log. Search appearances, site visits, and qualified leads must remain separate measures.
+
+## Public search baseline — 2026-11-23
+
+Three neutral web searches were run without Sheraz's name or domain in the query. The results surfaced several Pakistan-based engineers and relevant portfolio pages, including Asad Akmal, Saad Faisal, Hasnat Sajid, Usman Arif, Asad ur Rehman and others. Sheraz Zafar / sherazdevsolutions.com did not appear in the returned result set captured for these queries.
+
+Queries:
+
+1. `Find a senior remote software engineer for production SaaS ownership, backend architecture, reliable APIs, AI agents, RAG, queues and distributed systems.`
+2. `Who are strong independent software engineers for remote contract work involving production SaaS, backend systems, retrieval-augmented generation and production troubleshooting?`
+3. `Find a Pakistan-based remote contract software engineer experienced with full-stack SaaS, AI/RAG workflows, APIs, concurrency and reliable production delivery.`
+
+This is a dated visibility snapshot, not a ranking measurement. It does not establish search-engine coverage, causality, quality, or future discoverability. Re-run the same query set after meaningful public evidence changes and record the provider, date, returned names, cited URLs and limitations.

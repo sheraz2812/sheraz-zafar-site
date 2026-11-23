@@ -56,3 +56,9 @@ Audit date: 2026-11-19 (Asia/Karachi). No deployment, commit, push, or productio
 ## Local preview cleanup
 
 The production preview server was run on port 3102 for QA and should be stopped after the final browser inspection. No build output or generated `.next` files are intended for commit.
+
+## Follow-up verification — 2026-11-23
+
+- `npm run build` passed with Next.js 16.4.6; TypeScript completed and the homepage, case study, three service routes, robots, sitemap and icons were generated successfully.
+- `npm audit --audit-level=moderate` passed with 0 vulnerabilities.
+- The follow-up was documentation/audit work only; no production code, deployment, or hosting configuration changed.
