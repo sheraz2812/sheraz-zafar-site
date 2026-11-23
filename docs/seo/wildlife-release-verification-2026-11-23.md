@@ -40,7 +40,9 @@ The architecture SVG is a generic technical illustration of component boundaries
 
 Connected property: `sc-domain:sherazdevsolutions.com`.
 
-The read-only Search Console connector returned no Search Analytics row for the new case-study URL in the 2026-11-01 through 2026-11-23 window. This is expected immediately after release and is not proof of a coverage state. URL Inspection/indexing-request actions are not exposed by the connected read-only connector, so no indexing request was submitted and no duplicate request was created.
+The read-only Search Console connector returned no Search Analytics row for the new case-study URL in the 2026-11-01 through 2026-11-23 window. This is expected immediately after release and is not proof of a coverage state. URL Inspection was verified separately in the authenticated Search Console session below.
+
+Follow-up URL Inspection in the authenticated Search Console session confirmed: **URL is not on Google**, **URL unknown to Google**, **page can be indexed**, and no referring sitemap was detected at inspection time. One indexing request was submitted on 2026-11-23; Search Console confirmed the URL was added to the priority crawl queue. No duplicate request was submitted.
 
 ## Next measurement
 
