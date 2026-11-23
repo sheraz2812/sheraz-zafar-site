@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" role="img" aria-labelledby="title desc">
+  <title id="title">Wildlife detection and event processing architecture</title><desc id="desc">A camera stream passes through detection and event persistence, then branches to recording, storage, notification and a reviewable dashboard.</desc>
+  <rect width="1200" height="420" fill="#e7e8e3"/><g font-family="Arial, sans-serif" fill="#0b1116">
+    <text x="48" y="42" font-size="14" letter-spacing="2">ENGINEERING PROJECT / TECHNICAL ARCHITECTURE</text>
+    <g stroke="#e45b43" stroke-width="3" fill="#f7f7f2"><rect x="48" y="100" width="220" height="90"/><rect x="350" y="100" width="240" height="90"/><rect x="672" y="100" width="240" height="90"/></g>
+    <g font-size="22" font-weight="700"><text x="72" y="140">RTSPS camera</text><text x="374" y="140">Detection pipeline</text><text x="696" y="140">Event boundary</text></g>
+    <g font-size="14" fill="#5b666a"><text x="72" y="165">stream + reconnect health</text><text x="374" y="165">YOLO + confidence filter</text><text x="696" y="165">deduplication + metadata</text></g>
+    <g stroke="#e45b43" stroke-width="3" fill="none"><path d="M268 145h82"/><path d="M590 145h82"/><path d="M792 190v62"/><path d="M792 252H170"/><path d="M170 252v42"/><path d="M377 252v42"/><path d="M584 252v42"/><path d="M791 252v42"/></g>
+    <g fill="#f7f7f2" stroke="#aeb9b5" stroke-width="2"><rect x="48" y="294" width="245" height="70"/><rect x="325" y="294" width="245" height="70"/><rect x="602" y="294" width="245" height="70"/><rect x="879" y="294" width="245" height="70"/></g>
+    <g font-size="18" font-weight="700"><text x="72" y="325">Recording</text><text x="349" y="325">Storage</text><text x="626" y="325">Notification</text><text x="903" y="325">Product surface</text></g>
+    <g font-size="13" fill="#5b666a"><text x="72" y="347">MP4 clip</text><text x="349" y="347">Google Drive</text><text x="626" y="347">email provider</text><text x="903" y="347">FastAPI + Next.js</text></g>
+  </g>
+</svg>

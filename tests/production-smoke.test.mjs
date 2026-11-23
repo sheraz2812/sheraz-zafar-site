@@ -165,8 +165,9 @@ test('robots and sitemap point crawlers to the canonical host', async () => {
   const sitemap = await (await fetch(new URL('/sitemap.xml', baseUrl))).text();
   assert.match(sitemap, /https:\/\/www\.sherazdevsolutions\.com\/services\/product-engineering\//);
   assert.match(sitemap, /https:\/\/www\.sherazdevsolutions\.com\/case-studies\/order-inventory-consistency\//);
+  assert.match(sitemap, /https:\/\/www\.sherazdevsolutions\.com\/case-studies\/wildlife-detection\//);
   const urls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(([, url]) => url);
-  assert.equal(urls.length, 5);
+  assert.equal(urls.length, 6);
   assert.equal(new Set(urls).size, urls.length);
   assert.ok(urls.every(url => url.startsWith('https://www.sherazdevsolutions.com/')));
 });
