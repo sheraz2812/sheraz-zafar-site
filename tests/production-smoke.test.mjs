@@ -62,6 +62,7 @@ test('homepage renders the current experience wording and www canonical', async 
   assert.match(html, /Engagements start with a defined problem/);
   assert.match(html, /Start with a paid technical discovery/);
   assert.match(html, /href="\/services\/product-engineering\/"/);
+  assert.match(html, /href="\/hire\/"/);
 });
 
 test('all service routes render with www canonicals', async () => {
@@ -78,6 +79,7 @@ test('all service routes render with www canonicals', async () => {
 test('all indexable pages have unique titles, self canonicals, index directives, and valid structured data', async () => {
   const routes = [
     '/',
+    '/hire/',
     '/services/product-engineering/',
     '/services/ai-integration/',
     '/services/production-reliability/',
@@ -177,7 +179,8 @@ test('robots and sitemap point crawlers to the canonical host', async () => {
   assert.match(sitemap, /https:\/\/www\.sherazdevsolutions\.com\/case-studies\/order-inventory-consistency\//);
   assert.match(sitemap, /https:\/\/www\.sherazdevsolutions\.com\/case-studies\/wildlife-detection\//);
   const urls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(([, url]) => url);
-  assert.equal(urls.length, 6);
+  assert.ok(urls.includes('https://www.sherazdevsolutions.com/hire/'));
+  assert.equal(urls.length, 7);
   assert.equal(new Set(urls).size, urls.length);
   assert.ok(urls.every(url => url.startsWith('https://www.sherazdevsolutions.com/')));
 });
