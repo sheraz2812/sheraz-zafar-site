@@ -108,6 +108,8 @@ test('all indexable pages have unique titles, self canonicals, index directives,
       assert.ok(html.includes('Engineering evidence'));
       assert.ok(html.includes('How to start'));
       if (route.includes('ai-integration')) {
+        assert.ok(html.includes('href="https://github.com/sheraz-zafar/cited-document-retrieval-reference"'));
+        assert.ok(html.includes('Run the cited document retrieval reference on GitHub'));
         assert.ok(html.includes('href="/case-studies/wildlife-detection/"'));
       } else {
         assert.ok(html.includes('href="/case-studies/order-inventory-consistency/"'));

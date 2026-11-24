@@ -36,8 +36,9 @@ const services = {
     boundary: 'Model output quality, vendor availability, and third-party usage costs depend on the selected providers and data. The work does not promise a particular accuracy, cost reduction, or business outcome.',
     start: 'Start with a paid feasibility review or scope one integration. Bring a permitted sample of your documents, representative questions and examples that should trigger human review or an insufficient-evidence response.',
     expertise: 'I help product teams add document search, cited answers or structured extraction to an existing application. A first slice can use a Python ingestion workflow, a searchable index with source metadata and an API connected to a Next.js review surface. Validate answer support, source visibility and missing-evidence behavior before expanding scope.',
-    evidenceNote: 'The document architecture illustrates ingestion and retrieval. The Wildlife project documents a separate computer-vision implementation with reviewable evidence, a FastAPI backend and a Next.js dashboard. It illustrates an AI-to-product workflow, with no claim about retrieval accuracy or production deployment.',
+    evidenceNote: 'The independent document retrieval reference ranks synthetic policy passages using sparse TF-IDF, returns verbatim answers with source citations, and abstains when evidence signals are weak. Its runnable tests and fixture evaluation show how these decisions can be checked. The Wildlife case study documents a separate computer-vision workflow.',
     evidence: [
+      { href: 'https://github.com/sheraz-zafar/cited-document-retrieval-reference', label: 'Run the cited document retrieval reference on GitHub' },
       { href: '/#architecture', label: 'See the document ingestion and retrieval architecture' },
       { href: '/case-studies/wildlife-detection/', label: 'Read the computer-vision event processing case study' },
     ],
