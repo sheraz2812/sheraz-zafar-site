@@ -105,7 +105,15 @@ test('all indexable pages have unique titles, self canonicals, index directives,
       const service = schemas.find(schema => schema['@type'] === 'Service');
       assert.ok(service, `${route} Service entity exists`);
       assert.equal(service.provider['@id'], 'https://www.sherazdevsolutions.com/#person');
-      assert.ok(html.includes('Related engineering reference'));
+      assert.ok(html.includes('Engineering evidence'));
+      assert.ok(html.includes('How to start'));
+      if (route.includes('ai-integration')) {
+        assert.ok(html.includes('href="/case-studies/wildlife-detection/"'));
+      } else {
+        assert.ok(html.includes('href="/case-studies/order-inventory-consistency/"'));
+        assert.ok(html.includes('/lib/order-inventory-model.mjs'));
+        assert.ok(html.includes('/tests/order-inventory-model.test.mjs'));
+      }
     }
     if (route.startsWith('/case-studies/')) {
       const article = schemas.find(schema => schema['@type'] === 'Article');
